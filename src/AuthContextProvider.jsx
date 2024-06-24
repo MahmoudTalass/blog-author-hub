@@ -1,5 +1,6 @@
 import { jwtDecode } from "jwt-decode";
 import { createContext, useReducer } from "react";
+import PropTypes from "prop-types";
 
 export const AuthContext = createContext({
    user: null,
@@ -43,4 +44,8 @@ export const AuthContextProvider = ({ children }) => {
    const [user, userDispatch] = useReducer(userReducer, null, initializeUser);
 
    return <AuthContext.Provider value={{ user, userDispatch }}>{children}</AuthContext.Provider>;
+};
+
+AuthContextProvider.propTypes = {
+   children: PropTypes.element,
 };
