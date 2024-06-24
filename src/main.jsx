@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import { RouterProvider } from "react-router-dom";
-import { router } from "./Router.jsx";
+import { router } from "./router.jsx";
 import { AuthContextProvider } from "./Auth/AuthContextProvider.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
