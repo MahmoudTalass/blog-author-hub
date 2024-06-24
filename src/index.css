@@ -12,10 +12,12 @@ html,
 #root,
 body {
    height: 100%;
+   background-color: #2c3e50;
 }
 
 #root {
    display: flex;
    flex-direction: column;
    min-height: 100%;
+   color: #ecf0f1;
 }
