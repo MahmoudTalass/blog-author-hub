@@ -11,7 +11,7 @@ export function Header() {
    return (
       <header>
          <h1>Author hub</h1>
-         {user && <button>Logout</button>}
+         {user && <button onClick={handleLogout}>Logout</button>}
       </header>
    );
 }
