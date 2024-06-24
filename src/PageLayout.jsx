@@ -1,1 +1,1 @@
-export default function PageLayout() {}
+export function PageLayout() {}

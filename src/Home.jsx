@@ -1,1 +1,1 @@
-export default function Home() {}
+export function Home() {}
