@@ -10,11 +10,13 @@ export function Header() {
    };
 
    return (
-      <header className="p-8 bg-color3">
-         <Link to="/">
-            <h1 className="text-4xl">Author hub</h1>
-         </Link>
-         {user && <button onClick={handleLogout}>Logout</button>}
+      <header className="p-8 bg-color3 flex justify-center">
+         <div className="flex justify-between max-w-[1400px] w-full">
+            <Link to="/">
+               <h1 className="text-4xl">Author hub</h1>
+            </Link>
+            {user && <button onClick={handleLogout}>Logout</button>}
+         </div>
       </header>
    );
 }
