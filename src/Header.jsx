@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useAuthContext } from "./Auth/useAuthContext";
 
 export function Header() {
@@ -9,8 +10,10 @@ export function Header() {
    };
 
    return (
-      <header>
-         <h1>Author hub</h1>
+      <header className="p-8 bg-color3">
+         <Link to="/">
+            <h1 className="text-4xl">Author hub</h1>
+         </Link>
          {user && <button onClick={handleLogout}>Logout</button>}
       </header>
    );
