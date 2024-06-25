@@ -37,7 +37,7 @@ export function useAuthenticate() {
          const localStorageUserObj = { name: payload.name, token: payload.token };
          localStorage.setItem("user", JSON.stringify(localStorageUserObj));
 
-         userDispatch({ action: "LOGIN", payload });
+         userDispatch({ type: "LOGIN", payload });
          setError(null);
       } catch (err) {
          setError(err);
