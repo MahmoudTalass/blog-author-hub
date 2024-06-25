@@ -12,14 +12,10 @@ export function Login() {
    const { user } = useAuthContext();
    const { authenticate, error, isLoading } = useAuthenticate();
 
-   console.log(error);
    const handleLogin = async (e) => {
       e.preventDefault();
 
-      const body = {
-         email,
-         password,
-      };
+      const body = { email, password };
       await authenticate(body, "login");
 
       if (!error) {
@@ -28,12 +24,8 @@ export function Login() {
       setPassword("");
    };
 
-   const handleEmailInput = (e) => {
-      setEmail(e.target.value);
-   };
-   const handlePasswordInput = (e) => {
-      setPassword(e.target.value);
-   };
+   const handleEmailInput = (e) => setEmail(e.target.value);
+   const handlePasswordInput = (e) => setPassword(e.target.value);
 
    if (user) {
       return <Navigate to="/" />;
@@ -60,7 +52,7 @@ export function Login() {
          />
          <p>
             New user?{" "}
-            <Link to="signup" className="underline">
+            <Link to="/signup" className="underline">
                Sign up here
             </Link>
          </p>
