@@ -1,63 +1,31 @@
-import { jwtDecode } from "jwt-decode";
 import { AuthButton } from "./AuthButton";
 import { AuthForm } from "./AuthForm";
 import { AuthInputField } from "./AuthInputField";
 import { useAuthContext } from "./useAuthContext";
 import { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
+import { useAuthenticate } from "./useAuthenticate";
 
 export function Login() {
    const [email, setEmail] = useState("");
    const [password, setPassword] = useState("");
-   const [error, setError] = useState(null);
-   const [isLoading, setIsLoading] = useState(false);
+   const { user } = useAuthContext();
+   const { authenticate, error, isLoading } = useAuthenticate();
 
-   const { user, userDispatch } = useAuthContext();
-   console.log("error", error);
-
+   console.log(error);
    const handleLogin = async (e) => {
       e.preventDefault();
-      setIsLoading(true);
-      const body = { email, password };
-      console.log(e);
 
-      try {
-         const response = await fetch("http://localhost:3000/api/auth/login", {
-            method: "POST",
-            headers: {
-               "content-type": "application/json",
-            },
-            body: JSON.stringify(body),
-         });
+      const body = {
+         email,
+         password,
+      };
+      await authenticate(body, "login");
 
-         const json = await response.json();
-
-         if (!response.ok) {
-            setPassword("");
-            throw new Error(json.error.message);
-         }
-
-         const { id, author } = jwtDecode(json.token);
-
-         const payload = {
-            token: json.token,
-            id,
-            name: json.name,
-            author,
-         };
-
-         const localStorageUserObj = { name: payload.name, token: payload.token };
-         localStorage.setItem("user", JSON.stringify(localStorageUserObj));
-
-         userDispatch({ action: "LOGIN", payload });
-         setError(null);
+      if (!error) {
          setEmail("");
-         setPassword("");
-      } catch (err) {
-         setError(err);
-      } finally {
-         setIsLoading(false);
       }
+      setPassword("");
    };
 
    const handleEmailInput = (e) => {
@@ -98,17 +66,13 @@ export function Login() {
          </p>
          <AuthButton disabled={isLoading}>Login</AuthButton>
          {error && (
-            <div>
-               {error.errors.length > 0 ? (
+            <div className="text-red-500">
+               {error.errors ? (
                   error.errors.map((err) => {
-                     return (
-                        <p className="text-red-500" key={err.message}>
-                           {err.message}
-                        </p>
-                     );
+                     return <p key={err.message}>{err.message}</p>;
                   })
                ) : (
-                  <p className="text-red-500">{error.message}</p>
+                  <p>{error.message}</p>
                )}
             </div>
          )}
