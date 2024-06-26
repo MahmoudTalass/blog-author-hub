@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useAuthContext } from "./Auth/useAuthContext";
+import { useAuthContext } from "./auth/useAuthContext";
 
 export function Header() {
    const { user, userDispatch } = useAuthContext();
