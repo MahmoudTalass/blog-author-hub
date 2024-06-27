@@ -3,6 +3,8 @@ import { PageLayout } from "./PageLayout";
 import { Home } from "./Home";
 import { Signup } from "./auth/Signup";
 import { Login } from "./auth/Login";
+import { CreatePost } from "./posts/CreatePost";
+import { EditPost } from "./posts/EditPost";
 
 export const router = createBrowserRouter([
    {
@@ -11,6 +13,14 @@ export const router = createBrowserRouter([
          {
             path: "/",
             element: <Home />,
+         },
+         {
+            path: "/create-post",
+            element: <CreatePost />,
+         },
+         {
+            path: "/:postId/edit",
+            element: <EditPost />,
          },
          {
             path: "signup",
