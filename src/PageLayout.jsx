@@ -6,7 +6,7 @@ export function PageLayout() {
    return (
       <>
          <Header />
-         <main className="flex-auto">
+         <main className="flex-auto mb-8">
             <Outlet />
          </main>
          <Footer />
