@@ -51,9 +51,11 @@ export function PostCard({ post, deletePost, addPost }) {
                >
                   <FontAwesomeIcon icon={faTrash} />
                </button>
-               <button className="hover:scale-110 hover:transform">
-                  <FontAwesomeIcon icon={faPenToSquare} />
-               </button>
+               <Link to={`${post._id}/edit`}>
+                  <button className="hover:scale-110 hover:transform">
+                     <FontAwesomeIcon icon={faPenToSquare} />
+                  </button>
+               </Link>
             </div>
          </div>
       </article>
