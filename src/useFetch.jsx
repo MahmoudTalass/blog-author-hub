@@ -27,7 +27,7 @@ export function useFetch(url) {
    const addData = (data) => dispatch({ type: "ADD", payload: data });
 
    useEffect(() => {
-      let active = true;
+      const controller = new AbortController();
 
       async function fetchData() {
          try {
@@ -35,6 +35,7 @@ export function useFetch(url) {
                headers: {
                   Authorization: `Bearer ${user.token}`,
                },
+               signal: controller.signal,
             });
 
             if (response.status === 401) {
@@ -49,11 +50,11 @@ export function useFetch(url) {
                throw new Error(json.error.message);
             }
 
-            if (active) {
-               setData(json);
-            }
+            setData(json);
          } catch (err) {
-            setError(err);
+            if (err.name !== "AbortError") {
+               setError(err);
+            }
          } finally {
             setIsLoading(false);
          }
@@ -62,7 +63,7 @@ export function useFetch(url) {
       fetchData();
 
       return () => {
-         active = false;
+         controller.abort;
       };
    }, [url, user, logout]);
 
