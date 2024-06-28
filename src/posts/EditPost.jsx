@@ -36,17 +36,17 @@ export function EditPost() {
       return <p>Something went wrong. Please try again later.</p>;
    }
 
-   console.log(post);
-
    return (
       <section className="flex flex-col items-center mt-6">
-         <PostForm
-            error={mutationError}
-            submitForm={submitForm}
-            isLoading={isMutating}
-            post={post.post}
-            formType=""
-         />
+         {post && (
+            <PostForm
+               error={mutationError}
+               submitForm={submitForm}
+               isLoading={isMutating}
+               post={{ text: "hello there" }}
+               formType=""
+            />
+         )}
       </section>
    );
 }
