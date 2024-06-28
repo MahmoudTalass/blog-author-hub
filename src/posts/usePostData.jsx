@@ -5,7 +5,7 @@ import { useLogout } from "../auth/useLogout";
 export function usePostData(url, fetchMethod) {
    const [error, setError] = useState(null);
    const [isLoading, setIsLoading] = useState(false);
-   const [data, setData] = useState(false);
+   const [data, setData] = useState(null);
    const { user } = useAuthContext();
    const logout = useLogout();
 
