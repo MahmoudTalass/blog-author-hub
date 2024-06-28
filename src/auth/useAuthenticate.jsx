@@ -21,6 +21,10 @@ export function useAuthenticate() {
 
          const json = await response.json();
 
+         if (response.status === 400) {
+            return setError(json.error);
+         }
+
          if (!response.ok) {
             throw new Error(json.error.message);
          }
