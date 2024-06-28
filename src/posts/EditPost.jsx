@@ -38,15 +38,13 @@ export function EditPost() {
 
    return (
       <section className="flex flex-col items-center mt-6">
-         {post && (
-            <PostForm
-               error={mutationError}
-               submitForm={submitForm}
-               isLoading={isMutating}
-               post={{ text: "hello there" }}
-               formType=""
-            />
-         )}
+         <PostForm
+            error={mutationError}
+            submitForm={submitForm}
+            isLoading={isMutating}
+            post={post.post}
+            formType=""
+         />
       </section>
    );
 }
