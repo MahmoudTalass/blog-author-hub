@@ -3,9 +3,9 @@ import { Editor } from "@tinymce/tinymce-react";
 import PropTypes from "prop-types";
 
 export function PostForm({ error, post, isLoading, formType, submitForm }) {
-   const [text, setText] = useState(() => (post ? post.text : ""));
-   const [title, setTitle] = useState(() => (post ? post.title : ""));
-   const [isPublished, setIsPublished] = useState(() => (post ? post.isPublished : false));
+   const [text, setText] = useState(post ? post.text : "");
+   const [title, setTitle] = useState(post ? post.title : "");
+   const [isPublished, setIsPublished] = useState(post ? post.isPublished : false);
 
    const handleTextInput = (newValue) => setText(newValue);
    const handleTitleInput = (e) => setTitle(e.target.value);
@@ -15,6 +15,8 @@ export function PostForm({ error, post, isLoading, formType, submitForm }) {
       const body = { text, title, isPublished };
       submitForm(body);
    };
+
+   console.log("post", post);
 
    return (
       <div className="max-w-[900px] flex flex-col gap-4">
