@@ -37,6 +37,8 @@ export function usePostData(url, fetchMethod) {
          }
          setData(json);
          setError(null);
+
+         return json;
       } catch (err) {
          setError(err);
       } finally {
