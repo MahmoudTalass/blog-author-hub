@@ -18,15 +18,17 @@ export function CommentSection() {
    const [commentInput, setCommentInput] = useState("");
    const { user } = useAuthContext();
    const {
-      data,
-      error,
+      error: mutationError,
       postData,
       isLoading: isMutating,
    } = usePostData("http://localhost:3000/api/comments", "POST");
 
-   function handlePostComment() {
-      postData(postId, commentInput, setCommentInput);
-   }
+   const handlePostComment = async () => {
+      const body = { text: commentInput, postId };
+      const newComment = await postData(body);
+      setCommentInput("");
+      actions.addData(newComment);
+   };
 
    return (
       <section>
@@ -52,11 +54,18 @@ export function CommentSection() {
                   Add comment
                </button>
             </div>
-            {error && (
-               <div className="mb-5">
-                  <p className="text-red-600">{error.message}</p>
-               </div>
-            )}
+            {mutationError &&
+               (mutationError.errors.length > 0 ? (
+                  mutationError.errors.map((err) => {
+                     return (
+                        <p key={err.message} className="text-red-500">
+                           {err.message}
+                        </p>
+                     );
+                  })
+               ) : (
+                  <p className="text-red-500">{mutationError?.message}</p>
+               ))}
          </div>
          {fetchError && <p>Could not get comments. Please try again later.</p>}
          {isFetching ? (
