@@ -10,6 +10,14 @@ function reducer(data, action) {
          return data.filter((item) => item._id !== action.id);
       case "SET":
          return action.payload;
+      case "UPDATE":
+         return data.map((item) => {
+            if (item._id === action.id) {
+               return action.payload;
+            } else {
+               return item;
+            }
+         });
       default:
          throw new Error("Invalid reducer action type");
    }
@@ -25,6 +33,7 @@ export function useFetch(url) {
    const setData = (data) => dispatch({ type: "SET", payload: data });
    const deleteData = (id) => dispatch({ type: "DELETE", id });
    const addData = (data) => dispatch({ type: "ADD", payload: data });
+   const updateData = (data, id) => dispatch({ type: "UPDATE", payload: data, id });
 
    useEffect(() => {
       const controller = new AbortController();
@@ -40,7 +49,8 @@ export function useFetch(url) {
 
             if (response.status === 401) {
                setData([]);
-               return logout();
+               logout();
+               throw new Error("Authorization required");
             }
 
             const json = await response.json();
@@ -71,6 +81,7 @@ export function useFetch(url) {
       setData,
       deleteData,
       addData,
+      updateData,
    };
 
    return { data, isLoading, error, actions };
