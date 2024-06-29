@@ -12,20 +12,21 @@ export function EditPost() {
    } = useFetch(`http://localhost:3000/api/posts/${postId}`);
    const {
       postData,
-      data: mutatedData,
       error: mutationError,
       isLoading: isMutating,
-   } = usePostData("http://localhost:3000/api/posts", "POST");
+   } = usePostData(`http://localhost:3000/api/posts/${postId}`, "PUT");
    const navigate = useNavigate();
 
    const submitForm = async (body) => {
-      if (body.isPublished && !post.post.isPublished) {
+      body = { ...post, text: body.text, title: body.title, isPublished: body.isPublished };
+
+      if (body.isPublished && !post.isPublished) {
          body["publishDate"] = Date.now();
       }
-      body["_id"] = post.post._id;
 
       await postData(body);
-      navigate(`/posts/${mutatedData._id}`);
+
+      navigate(`/posts/${post._id}`);
    };
 
    if (isFetching) {
