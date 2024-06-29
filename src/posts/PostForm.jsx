@@ -16,7 +16,13 @@ export function PostForm({ error, post, isLoading, formType, submitForm }) {
       submitForm(body);
    };
 
-   console.log("post", post);
+   function decodeHtml(html) {
+      var txt = document.createElement("textarea");
+      txt.innerHTML = html;
+      return txt.value;
+   }
+
+   const unescapedText = decodeHtml(text);
 
    return (
       <div className="max-w-[900px] flex flex-col gap-4">
@@ -64,8 +70,10 @@ export function PostForm({ error, post, isLoading, formType, submitForm }) {
                   skin: "oxide-dark",
                   content_css: "dark",
                }}
+               // when the value is set initially, onEditorChange runs the event which sets the
+               // text state again, causing a re-render
                onEditorChange={handleTextInput}
-               value={text}
+               value={unescapedText}
             />
          </div>
          <div className="flex gap-2">
