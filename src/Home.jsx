@@ -31,7 +31,7 @@ export function Home() {
 
    return (
       <div className="m-4 flex justify-center">
-         <div className="flex flex-col max-w-[1200px]">
+         <div className="flex flex-col max-w-[1200px] w-full">
             <div className="flex justify-between">
                <Link to="/create-post">
                   <button className="px-4 py-2 bg-color1 rounded-md">Create new post</button>
