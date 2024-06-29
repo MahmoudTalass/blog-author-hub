@@ -38,7 +38,7 @@ export function PostCard({ post, deletePost, addPost }) {
          <div className="mt-auto flex justify-between ">
             <div
                className={`${post.isPublished ? "bg-green-700" : "bg-red-500"} rounded-md
-                   flex justify-center items-center px-2 grow-0`}
+                   flex justify-center items-center px-2 py-1 grow-0`}
             >
                {post.isPublished ? "Published" : "Unpublished"}
             </div>
