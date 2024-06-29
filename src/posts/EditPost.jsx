@@ -42,7 +42,7 @@ export function EditPost() {
             error={mutationError}
             submitForm={submitForm}
             isLoading={isMutating}
-            post={post.post}
+            post={post}
             formType=""
          />
       </section>
