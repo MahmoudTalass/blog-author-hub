@@ -35,4 +35,5 @@ a,
 select,
 input {
    color: inherit;
+   text-decoration: none;
 }
