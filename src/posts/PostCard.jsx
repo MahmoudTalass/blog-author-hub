@@ -43,7 +43,7 @@ export function PostCard({ post, deletePost, addPost }) {
                {post.isPublished ? "Published" : "Unpublished"}
             </div>
 
-            <div className="flex gap-4">
+            <div className="flex gap-4 items-center">
                <button
                   className="hover:scale-110 hover:transform"
                   onClick={handleDeletePost}
