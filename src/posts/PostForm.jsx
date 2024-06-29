@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import PropTypes from "prop-types";
+import DOMPurify from "dompurify";
+import { decode } from "he";
 
 export function PostForm({ error, post, isLoading, formType, submitForm }) {
    const [text, setText] = useState(post ? post.text : "");
@@ -16,13 +18,8 @@ export function PostForm({ error, post, isLoading, formType, submitForm }) {
       submitForm(body);
    };
 
-   function decodeHtml(html) {
-      var txt = document.createElement("textarea");
-      txt.innerHTML = html;
-      return txt.value;
-   }
-
-   const unescapedText = decodeHtml(text);
+   const decodedHtml = decode(text);
+   const sanitizedHtml = DOMPurify.sanitize(decodedHtml);
 
    return (
       <div className="max-w-[900px] flex flex-col gap-4">
@@ -73,7 +70,7 @@ export function PostForm({ error, post, isLoading, formType, submitForm }) {
                // when the value is set initially, onEditorChange runs the event which sets the
                // text state again, causing a re-render
                onEditorChange={handleTextInput}
-               value={unescapedText}
+               value={sanitizedHtml}
             />
          </div>
          <div className="flex gap-2">
