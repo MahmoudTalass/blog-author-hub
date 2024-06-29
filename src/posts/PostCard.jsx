@@ -31,7 +31,7 @@ export function PostCard({ post, deletePost, addPost }) {
             <p className="">Publish date: {moment(post.publishDate).format("ll")}</p>
          )}
          <p className="">Creation date: {moment(post.createdAt).format("ll")}</p>
-         <Link to={`/post/${post._id}`} className="underline w-fit">
+         <Link to={`/posts/${post._id}`} className="underline w-fit">
             View post
          </Link>
 
@@ -51,7 +51,7 @@ export function PostCard({ post, deletePost, addPost }) {
                >
                   <FontAwesomeIcon icon={faTrash} />
                </button>
-               <Link to={`${post._id}/edit`}>
+               <Link to={`/posts/${post._id}/edit`}>
                   <button className="hover:scale-110 hover:transform">
                      <FontAwesomeIcon icon={faPenToSquare} />
                   </button>
