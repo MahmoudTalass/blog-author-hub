@@ -26,6 +26,13 @@ body {
    text-decoration: none;
 }
 
+hr {
+   height: 1px;
+   background: gray;
+   margin: 1rem 0;
+   border: none;
+}
+
 button {
    color: inherit;
    background: none;
