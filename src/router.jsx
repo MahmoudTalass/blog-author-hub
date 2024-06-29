@@ -5,6 +5,7 @@ import { Signup } from "./auth/Signup";
 import { Login } from "./auth/Login";
 import { CreatePost } from "./posts/CreatePost";
 import { EditPost } from "./posts/EditPost";
+import { Post } from "./posts/Post";
 
 export const router = createBrowserRouter([
    {
@@ -22,6 +23,11 @@ export const router = createBrowserRouter([
             path: "/:postId/edit",
             element: <EditPost />,
          },
+         {
+            path: "/post/:postId",
+            element: <Post />,
+         },
+
          {
             path: "signup",
             element: <Signup />,
