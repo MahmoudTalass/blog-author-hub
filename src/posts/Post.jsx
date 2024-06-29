@@ -31,16 +31,19 @@ export function Post() {
    const sanitizedHtml = DOMPurify.sanitize(decodedHtml);
 
    return (
-      <div className="w-full flex justify-center mt-8">
+      <div className="w-full flex justify-center mt-8 ">
          <section className="w-full sm:w-11/12 flex flex-col bg-[#1C2833] p-8 gap-12 rounded-xl ">
             <div className="flex flex-col gap-8">
                <h2 className="text-center sm:text-left text-3xl">{post.title}</h2>
                <div className="flex justify-between">
-                  <p>{post.author.name}</p>
+                  <p>By: {post.author.name}</p>
                   <p>{moment(post.publishDate).format("ll")}</p>
                </div>
                <hr />
-               <div className="p-4" dangerouslySetInnerHTML={{ __html: sanitizedHtml }}></div>
+               <div
+                  className="p-4 prose prose-invert"
+                  dangerouslySetInnerHTML={{ __html: sanitizedHtml }}
+               ></div>
             </div>
             <CommentSection />
          </section>
