@@ -22,7 +22,7 @@ export function PostForm({ error, post, isLoading, formType, submitForm }) {
    const sanitizedHtml = DOMPurify.sanitize(decodedHtml);
 
    return (
-      <div className="max-w-[900px] flex flex-col gap-4">
+      <div className="max-w-[900px] w-full flex flex-col gap-4">
          <h2 className="font-bold text-3xl">
             {formType === "create" ? "Create new post" : "Edit post"}
          </h2>
