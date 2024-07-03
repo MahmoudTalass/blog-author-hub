@@ -14,7 +14,7 @@ export function PostCard({ post, deletePost, addPost }) {
    const handleDeletePost = async () => {
       const postId = post._id;
       deletePost(postId);
-      await deleteData({ authorId: post.author._id });
+      await deleteData();
 
       if (error) {
          addPost(post);
