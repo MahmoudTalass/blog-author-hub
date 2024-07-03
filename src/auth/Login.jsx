@@ -58,7 +58,7 @@ export function Login() {
          </p>
          <AuthButton disabled={isLoading}>Login</AuthButton>
          {error && (
-            <div className="text-red-500">
+            <div className="text-red-500 text-center">
                {error.errors ? (
                   error.errors.map((err) => {
                      return <p key={err.message}>{err.message}</p>;
