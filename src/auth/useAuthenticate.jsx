@@ -30,7 +30,11 @@ export function useAuthenticate() {
          }
 
          const { id, author } = jwtDecode(json.token);
-
+         if (!author) {
+            throw new Error(
+               "Unauthorized access. To access this site you must be a registered author. Please sign up for a new author account to gain access."
+            );
+         }
          const payload = {
             token: json.token,
             id,
