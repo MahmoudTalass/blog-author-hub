@@ -8,7 +8,7 @@ export function useDeleteData(url) {
    const { user } = useAuthContext();
    const logout = useLogout();
 
-   const deleteData = async (body) => {
+   const deleteData = async () => {
       setIsLoading(true);
       try {
          const response = await fetch(url, {
@@ -17,7 +17,6 @@ export function useDeleteData(url) {
                Authorization: `Bearer ${user.token}`,
                "content-type": "application/json",
             },
-            body: JSON.stringify(body),
          });
 
          if (response.status === 401) {
