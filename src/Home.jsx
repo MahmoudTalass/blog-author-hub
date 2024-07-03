@@ -3,6 +3,7 @@ import { useAuthContext } from "./auth/useAuthContext";
 import { Navigate, Link } from "react-router-dom";
 import { PostCard } from "./posts/PostCard";
 import { useFetch } from "./useFetch";
+import { Spinner } from "./Spinner";
 
 export function Home() {
    const { user } = useAuthContext();
@@ -23,7 +24,7 @@ export function Home() {
 
    if (!user) return <Navigate to="/login" />;
 
-   if (isLoading) return <p>Loading...</p>;
+   if (isLoading) return <Spinner />;
 
    if (error) {
       return <p>{error.message}</p>;

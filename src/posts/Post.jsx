@@ -5,6 +5,7 @@ import { useFetch } from "../useFetch";
 import { useAuthContext } from "../auth/useAuthContext";
 import DOMPurify from "dompurify";
 import { decode } from "he";
+import { Spinner } from "../Spinner";
 
 export function Post() {
    const { user } = useAuthContext();
@@ -16,7 +17,7 @@ export function Post() {
    }
 
    if (isLoading) {
-      return <p>Loading...</p>;
+      return <Spinner />;
    }
 
    if (error) {

@@ -2,6 +2,7 @@ import { usePostData } from "./usePostData";
 import { useNavigate, useParams } from "react-router-dom";
 import { PostForm } from "./PostForm";
 import { useFetch } from "../useFetch";
+import { Spinner } from "../Spinner";
 
 export function EditPost() {
    const { postId } = useParams();
@@ -30,7 +31,7 @@ export function EditPost() {
    };
 
    if (isFetching) {
-      return <p>Loading...</p>;
+      return <Spinner />;
    }
 
    if (fetchError) {
