@@ -24,7 +24,7 @@ function reducer(data, action) {
 }
 
 export function useFetch(url) {
-   const [data, dispatch] = useReducer(reducer, []);
+   const [data, dispatch] = useReducer(reducer, null);
    const [error, setError] = useState(null);
    const [isLoading, setIsLoading] = useState(true);
    const { user } = useAuthContext();
@@ -36,6 +36,7 @@ export function useFetch(url) {
    const updateData = (data, id) => dispatch({ type: "UPDATE", payload: data, id });
 
    useEffect(() => {
+      setIsLoading(true);
       const controller = new AbortController();
 
       async function fetchData() {
@@ -48,7 +49,7 @@ export function useFetch(url) {
             });
 
             if (response.status === 401) {
-               setData([]);
+               setData(null);
                logout();
                throw new Error("Authorization required");
             }
@@ -56,10 +57,11 @@ export function useFetch(url) {
             const json = await response.json();
 
             if (!response.ok) {
-               setData([]);
+               setData(null);
                throw new Error(json.error.message);
             }
 
+            setError(null);
             setData(json);
          } catch (err) {
             if (err.name !== "AbortError") {
@@ -73,7 +75,7 @@ export function useFetch(url) {
       fetchData();
 
       return () => {
-         controller.abort;
+         // controller.abort();
       };
    }, [url, user, logout]);
 
