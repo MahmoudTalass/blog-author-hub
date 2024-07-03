@@ -10,17 +10,23 @@ export function CreatePost() {
       if (body.isPublished) {
          body["publishDate"] = Date.now();
       }
-      const newPost = await postData(body);
-      navigate(`/posts/${newPost._id}`);
+      try {
+         const newPost = await postData(body);
+         navigate(`/posts/${newPost._id}`);
+      } catch (err) {
+         console.log();
+      }
    };
 
    return (
-      <PostForm
-         error={error}
-         submitForm={submitForm}
-         isLoading={isLoading}
-         post={null}
-         formType="create"
-      />
+      <section className="flex flex-col items-center mt-6">
+         <PostForm
+            error={error}
+            submitForm={submitForm}
+            isLoading={isLoading}
+            post={null}
+            formType="create"
+         />
+      </section>
    );
 }
