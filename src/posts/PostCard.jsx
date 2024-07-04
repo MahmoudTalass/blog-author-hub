@@ -5,10 +5,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 import { useDeleteData } from "./useDeleteData";
+import { decode } from "he";
 
 export function PostCard({ post, deletePost, addPost }) {
    const { deleteData, error, isLoading } = useDeleteData(
-      `http://localhost:3000/api/posts/${post._id}`
+      `https://blog-api-service.fly.dev/api/posts/${post._id}`
    );
 
    const handleDeletePost = async () => {
@@ -21,10 +22,12 @@ export function PostCard({ post, deletePost, addPost }) {
       }
    };
 
+   const decodedTitle = decode(post.title);
+
    return (
-      <article className="flex flex-col gap-5 w-[500px] w-min-[300px] h-[300px] p-5 bg-color1 rounded-lg">
+      <article className="flex flex-col gap-5 w-[500px] w-min-[300px] h-min-[300px] p-5 bg-color1 rounded-lg">
          {error && <p className="text-red-500">{error}</p>}
-         <h3 className="text-3xl ">{post.title}</h3>
+         <h3 className="text-3xl ">{decodedTitle}</h3>
 
          <p className="">By: {post.author.name}</p>
          {post.isPublished && (
