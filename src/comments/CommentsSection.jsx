@@ -14,14 +14,14 @@ export function CommentSection() {
       error: fetchError,
       actions,
       isLoading: isFetching,
-   } = useFetch(`http://localhost:3000/api/posts/${postId}/comments`);
+   } = useFetch(`https://blog-api-service.fly.dev/api/posts/${postId}/comments`);
    const [commentInput, setCommentInput] = useState("");
    const { user } = useAuthContext();
    const {
       error: mutationError,
       postData,
       isLoading: isMutating,
-   } = usePostData("http://localhost:3000/api/comments", "POST");
+   } = usePostData("https://blog-api-service.fly.dev/api/comments", "POST");
 
    const handlePostComment = async () => {
       const body = { text: commentInput, postId };
@@ -68,7 +68,7 @@ export function CommentSection() {
                ))}
          </div>
          {fetchError && <p>Could not get comments. Please try again later.</p>}
-         {isFetching ? (
+         {isFetching || !comments ? (
             <div className="w-full flex justify-center items-center">
                <FontAwesomeIcon icon={faEllipsis} fade size="2x" />
             </div>

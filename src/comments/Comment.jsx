@@ -22,11 +22,11 @@ function Comment({ comment, commentActions, isCurrentUserComment }) {
    // state for text that the user will type to update/edit their comment
    const [commentInput, setCommentInput] = useState(comment.text);
    const { error: updateError, postData } = usePostData(
-      `http://localhost:3000/api/comments/${comment._id}`,
+      `https://blog-api-service.fly.dev/api/comments/${comment._id}`,
       "PUT"
    );
    const { deleteData, error: deleteError } = useDeleteData(
-      `http://localhost:3000/api/comments/${comment._id}`
+      `https://blog-api-service.fly.dev/api/comments/${comment._id}`
    );
 
    const { user } = useAuthContext();

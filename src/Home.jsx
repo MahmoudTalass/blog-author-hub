@@ -8,7 +8,9 @@ import { Spinner } from "./Spinner";
 export function Home() {
    const { user } = useAuthContext();
    const [selectedFilter, setSelectedFilter] = useState("all");
-   const { data, actions, error, isLoading } = useFetch("http://localhost:3000/api/users/me/posts");
+   const { data, actions, error, isLoading } = useFetch(
+      "https://blog-api-service.fly.dev/api/users/me/posts"
+   );
 
    const handleFilterChange = (e) => setSelectedFilter(e.target.value);
 

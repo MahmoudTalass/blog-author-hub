@@ -10,12 +10,12 @@ export function EditPost() {
       data: post,
       error: fetchError,
       isLoading: isFetching,
-   } = useFetch(`http://localhost:3000/api/posts/${postId}`);
+   } = useFetch(`https://blog-api-service.fly.dev/api/posts/${postId}`);
    const {
       postData,
       error: mutationError,
       isLoading: isMutating,
-   } = usePostData(`http://localhost:3000/api/posts/${postId}`, "PUT");
+   } = usePostData(`https://blog-api-service.fly.dev/api/posts/${postId}`, "PUT");
    const navigate = useNavigate();
 
    const submitForm = async (body) => {
