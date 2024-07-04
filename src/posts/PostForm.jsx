@@ -3,6 +3,8 @@ import { Editor } from "@tinymce/tinymce-react";
 import PropTypes from "prop-types";
 import DOMPurify from "dompurify";
 import { decode } from "he";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
 
 export function PostForm({ error, post, isLoading, formType, submitForm }) {
    const [text, setText] = useState(post ? post.text : "");
@@ -100,7 +102,13 @@ export function PostForm({ error, post, isLoading, formType, submitForm }) {
             disabled={isLoading}
             onClick={handleSubmitForm}
          >
-            {formType === "create" ? "Create" : "Confirm edit"}
+            {isLoading ? (
+               <FontAwesomeIcon icon={faEllipsis} fade size="2x" />
+            ) : formType === "create" ? (
+               "Create"
+            ) : (
+               "Confirm edit"
+            )}
          </button>
       </div>
    );
