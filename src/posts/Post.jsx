@@ -16,7 +16,7 @@ export function Post() {
       return <Navigate to="/login" replace={true} />;
    }
 
-   if (isLoading) {
+   if (isLoading || !post) {
       return <Spinner />;
    }
 

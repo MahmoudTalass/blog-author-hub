@@ -24,7 +24,7 @@ export function Home() {
 
    if (!user) return <Navigate to="/login" />;
 
-   if (isLoading) return <Spinner />;
+   if (isLoading || !data) return <Spinner />;
 
    if (error) {
       return <p>{error.message}</p>;
