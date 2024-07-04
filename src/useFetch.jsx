@@ -75,7 +75,7 @@ export function useFetch(url) {
       fetchData();
 
       return () => {
-         // controller.abort();
+         controller.abort();
       };
    }, [url, user, logout]);
 
