@@ -6,6 +6,7 @@ import { Login } from "./auth/Login";
 import { CreatePost } from "./posts/CreatePost";
 import { EditPost } from "./posts/EditPost";
 import { Post } from "./posts/Post";
+import { NotFoundPage } from "./NotFoundPage";
 
 export const router = createBrowserRouter([
    {
@@ -37,5 +38,9 @@ export const router = createBrowserRouter([
             element: <Login />,
          },
       ],
+   },
+   {
+      path: "*",
+      element: <NotFoundPage />,
    },
 ]);
