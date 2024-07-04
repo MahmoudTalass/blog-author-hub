@@ -20,7 +20,9 @@ export function Signup() {
          email,
          password,
          name,
+         isAuthor: true,
       };
+
       await authenticate(body, "signup");
 
       if (!error) {
