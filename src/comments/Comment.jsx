@@ -7,6 +7,7 @@ import moment from "moment";
 import { usePostData } from "../posts/usePostData";
 import { useDeleteData } from "../posts/useDeleteData";
 import { useAuthContext } from "../auth/useAuthContext";
+import { decode } from "he";
 
 function Comment({ comment, commentActions, isCurrentUserComment }) {
    // toggle display state
@@ -60,6 +61,8 @@ function Comment({ comment, commentActions, isCurrentUserComment }) {
          commentActions.addData(comment);
       }
    };
+
+   const decodedCommentText = decode(comment.text);
 
    return (
       <>
@@ -122,7 +125,7 @@ function Comment({ comment, commentActions, isCurrentUserComment }) {
                            {moment(comment.createdAt).fromNow()}
                         </p>
                      </div>
-                     <p>{comment.text}</p>
+                     <p>{decodedCommentText}</p>
                   </div>
                   <div className="relative">
                      <button
@@ -134,7 +137,7 @@ function Comment({ comment, commentActions, isCurrentUserComment }) {
                      </button>
                      {displayOptions && (
                         <div
-                           className="flex flex-col bg-color2 rounded absolute right-0 z-10 p-1 px-3 gap-1"
+                           className="flex flex-col bg-color2 rounded absolute right-0 z-10 p-1 px-3 gap-1 divide-y"
                            role="menu"
                            ref={commentOptionsRef}
                         >
@@ -143,7 +146,6 @@ function Comment({ comment, commentActions, isCurrentUserComment }) {
                                  Edit
                               </button>
                            )}
-                           <hr />
                            <button role="menuitem" onClick={handleDeleteComment}>
                               Delete
                            </button>
