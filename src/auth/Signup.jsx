@@ -13,7 +13,7 @@ export function Signup() {
    const { user } = useAuthContext();
    const { authenticate, error, isLoading } = useAuthenticate();
 
-   const handleSingup = async (e) => {
+   const handleSignup = async (e) => {
       e.preventDefault();
 
       const body = {
@@ -47,7 +47,7 @@ export function Signup() {
       return <Navigate to="/" />;
    }
    return (
-      <AuthForm handleAuth={handleSingup}>
+      <AuthForm handleAuth={handleSignup}>
          <h2 className="text-4xl">Sign up</h2>
          <AuthInputField
             id="name"
