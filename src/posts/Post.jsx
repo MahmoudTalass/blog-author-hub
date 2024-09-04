@@ -39,7 +39,7 @@ export function Post() {
 
    return (
       <div className="w-full flex justify-center mt-8 ">
-         <section className="w-full sm:w-11/12 flex flex-col bg-[#1C2833] p-8 gap-12 rounded-xl ">
+         <section className="w-full sm:w-9/12 flex flex-col bg-[#1C2833] p-8 gap-12 rounded-xl ">
             <div className="flex flex-col gap-8">
                <h2 className="text-center sm:text-left text-3xl">{decodedTitle}</h2>
                <div className="flex justify-between">
